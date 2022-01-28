@@ -1,0 +1,7 @@
+{
+  "name": "wordle-solver",
+  "description": "A program that solves Wordle puzzles",
+  "repository": "https://github.com/LandonSchropp/wordle-solver",
+  "author": "Landon Schropp <schroppl@gmail.com>",
+  "license": "MIT"
+}
