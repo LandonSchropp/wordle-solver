@@ -10,6 +10,14 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "solve": "ts-node index.ts"
+    "solve": "ts-node index.ts",
+    "lint": "eslint --max-warnings=0 ."
+  },
+  "devDependencies": {
+    "@landonschropp/eslint-config": "0.11.1",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "eslint": "8.8.0",
+    "eslint_d": "11.1.1"
   }
 }
