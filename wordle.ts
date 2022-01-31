@@ -24,10 +24,19 @@ function matchesExactLetters(word: string, response: string) {
 }
 
 /**
+ * Returns true if the word does not contain any of the letters that were rejected from the attempt.
+ */
+function doesNotContainRejectedLetters(word: string, attempt: string, response: string) {
+  let rejectedLetters = attempt.split("").filter((attemptLetter, index) => response[index] === "_");
+  return new RegExp(`[^${ rejectedLetters.join("") }]{5}`).test(word);
+}
+
+/**
  * Returns true if the provided word matches the given attempt and response.
  */
 function isMatch(word: string, attempt: string, response: string) {
-  return matchesExactLetters(word, response);
+  return matchesExactLetters(word, response)
+    && doesNotContainRejectedLetters(word, attempt, response);
 }
 
 /**
