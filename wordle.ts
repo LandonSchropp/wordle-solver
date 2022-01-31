@@ -38,7 +38,11 @@ function doesNotContainRejectedLetters(word: string, attempt: string, response: 
  * match.
  */
 function doesNotHaveMisplacedLettersInWrongSpot(word: string, attempt: string, response: string) {
-  return !new RegExp(response.replaceAll(/[A-Z_]/g, ".")).test(word);
+  return new RegExp(
+    response.replaceAll(/./g, letter => {
+      return /[a-z]/.test(letter) ? `[^${ letter }]` : ".";
+    })
+  ).test(word);
 }
 
 /**
