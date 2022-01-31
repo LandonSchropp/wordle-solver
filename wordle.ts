@@ -17,8 +17,22 @@ export function nextWord(words: string[]) {
 }
 
 /**
+ * Returns true if the word matches the exact letters in the response.
+ */
+function matchesExactLetters(word: string, response: string) {
+  return new RegExp(response.replaceAll(/[a-z_]/g, ".").toLowerCase()).test(word);
+}
+
+/**
+ * Returns true if the provided word matches the given attempt and response.
+ */
+function isMatch(word: string, attempt: string, response: string) {
+  return matchesExactLetters(word, response);
+}
+
+/**
  * Filters the array of words using the Wordle response.
  */
-export function filterWords(words: string[], response: string) {
-  return words;
+export function filterWords(words: string[], attempt: string, response: string) {
+  return words.filter(word => isMatch(word, attempt, response));
 }

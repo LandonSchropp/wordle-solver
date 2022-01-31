@@ -32,9 +32,9 @@ console.log(`\n${ INTRODUCTION }`);
 /**
  * Provides a word to the user and prompts them to respond.
  */
-async function prompt(words: string[], word: string) {
+async function prompt(numberOfWords: number, word: string) {
   /* eslint-disable no-console */
-  console.log(`\nThere are ${ words.length.toLocaleString() } possible answers.`);
+  console.log(`\nThere are ${ numberOfWords.toLocaleString() } possible answers.`);
   console.log(`Please try the word '${ word }'.`);
   /* eslint-enable no-console */
 
@@ -43,8 +43,17 @@ async function prompt(words: string[], word: string) {
   return response;
 }
 
-for (let attempts = 0, words = DICTIONARY; attempts < 6 && words.length > 1; attempts++) {
-  let word = nextWord(words);
-  let response = await prompt(words, word);
-  words = filterWords(words, response);
+for (let attempts = 0; attempts < 6 && words.length > 1; attempts++) {
+  let attempt = nextWord(words);
+  let response = await prompt(words.length, attempt);
+  words = filterWords(words, attempt, response);
 }
+
+if (words.length === 0) {
+  // eslint-disable-next-line no-console
+  console.log("\nOh no! Something's gone terribly wrong. No matches could be found.");
+  process.exit(1);
+}
+
+// eslint-disable-next-line no-console
+console.log(`\nThe answer is '${ words[0] }'!`);
