@@ -3,7 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import { ask } from "./question.js";
-import { filterWords, nextWord } from "./wordle.js";
+import { filterWords, nextWord, validateResponse } from "./wordle.js";
 
 const WORD_LENGTH = 5;
 
@@ -46,6 +46,7 @@ async function prompt(numberOfWords: number, word: string) {
 for (let attempts = 0; attempts < 6 && words.length > 1; attempts++) {
   let attempt = nextWord(words);
   let response = await prompt(words.length, attempt);
+  validateResponse(response);
   words = filterWords(words, attempt, response);
 }
 
