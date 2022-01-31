@@ -40,5 +40,7 @@ async function prompt(words: string[], word: string) {
 }
 
 for (let attempts = 0, words = DICTIONARY; attempts < 6 && words.length > 1; attempts++) {
-  await prompt(words, words[0]);
+  let word = nextWord(words);
+  let response = await prompt(words, word);
+  words = filterWords(words, response);
 }
