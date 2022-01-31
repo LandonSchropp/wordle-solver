@@ -1,17 +1,6 @@
-import { readFileSync } from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-
+import { DICTIONARY } from "./dictionary.js";
 import { ask } from "./question.js";
 import { filterWords, nextWord, validateResponse } from "./wordle.js";
-
-const WORD_LENGTH = 5;
-
-const DIRNAME = path.dirname(fileURLToPath(import.meta.url));
-
-let words = readFileSync(path.join(DIRNAME, "data/dictionary.txt"), "utf-8")
-  .split("\n")
-  .filter(word => word.length === WORD_LENGTH);
 
 const INTRODUCTION = `
 Thanks for using the Wordle solver!
@@ -43,6 +32,9 @@ async function prompt(numberOfWords: number, word: string) {
   return response;
 }
 
+let words = DICTIONARY;
+
+// Loop through the words, reducing the number each time.
 for (let attempts = 0; attempts < 6 && words.length > 1; attempts++) {
   let attempt = nextWord(words);
   let response = await prompt(words.length, attempt);
