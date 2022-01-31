@@ -1,11 +1,15 @@
 import { readFileSync } from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import { ask } from "./question.js";
 import { filterWords, nextWord } from "./wordle.js";
 
 const WORD_LENGTH = 5;
 
-let DICTIONARY = readFileSync("/usr/share/dict/words", "utf-8")
+const DIRNAME = path.dirname(fileURLToPath(import.meta.url));
+
+let words = readFileSync(path.join(DIRNAME, "data/dictionary.txt"), "utf-8")
   .split("\n")
   .filter(word => word.length === WORD_LENGTH);
 
