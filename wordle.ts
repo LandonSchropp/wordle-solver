@@ -1,3 +1,5 @@
+import { sample } from "lodash-es";
+
 /**
  * Validates that the provided response is in the correct format.
  */
@@ -11,7 +13,7 @@ export function validateResponse(response: string) {
  * Chooses the next word to try from the array of words.
  */
 export function nextWord(words: string[]) {
-  return words[0];
+  return sample(words);
 }
 
 /**
