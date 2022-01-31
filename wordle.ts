@@ -27,8 +27,18 @@ function matchesExactLetters(word: string, response: string) {
  * Returns true if the word does not contain any of the letters that were rejected from the attempt.
  */
 function doesNotContainRejectedLetters(word: string, attempt: string, response: string) {
-  let rejectedLetters = attempt.split("").filter((attemptLetter, index) => response[index] === "_");
+  let rejectedLetters = attempt.split("").filter((letter, index) => response[index] === "_");
   return new RegExp(`[^${ rejectedLetters.join("") }]{5}`).test(word);
+}
+
+/**
+ * Returns true if the word contains all of the letters that were present in the response but were
+ * not in the correct location.
+ */
+function conatainsMisplacedLetters(word: string, attempt: string, response: string) {
+  return attempt.split("")
+    .filter((letter, index) => letter === response[index])
+    .every(letter => word.includes(letter));
 }
 
 /**
@@ -36,7 +46,8 @@ function doesNotContainRejectedLetters(word: string, attempt: string, response: 
  */
 function isMatch(word: string, attempt: string, response: string) {
   return matchesExactLetters(word, response)
-    && doesNotContainRejectedLetters(word, attempt, response);
+    && doesNotContainRejectedLetters(word, attempt, response)
+    && conatainsMisplacedLetters(word, attempt, response);
 }
 
 /**
