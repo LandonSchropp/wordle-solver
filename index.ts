@@ -49,11 +49,11 @@ for (let attempts = 0; attempts < 6 && words.length > 1; attempts++) {
   words = filterWords(words, attempt, response);
 }
 
-if (words.length === 0) {
+if (words.length !== 1) {
   // eslint-disable-next-line no-console
   console.log("\nOh no! Something's gone terribly wrong. No matches could be found.");
   process.exit(1);
 }
 
 // eslint-disable-next-line no-console
-console.log(`\nThe answer is '${ words[0] }'!`);
+console.log("You found the answer! Nice job.");
