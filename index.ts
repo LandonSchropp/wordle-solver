@@ -49,4 +49,4 @@ if (words.length !== 1) {
 }
 
 // eslint-disable-next-line no-console
-console.log("\nYou found the answer! Nice job.");
+console.log(`\nThe answer is '${ words[0] }'! Nice job.`);
