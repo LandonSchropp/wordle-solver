@@ -4,13 +4,14 @@
   "repository": "https://github.com/LandonSchropp/wordle-solver",
   "author": "Landon Schropp <schroppl@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "@types/node": "^17.0.13",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "solve": "ts-node index.ts",
+    "solve": "node --loader ts-node/esm index.ts",
     "lint": "eslint --max-warnings=0 ."
   },
   "devDependencies": {
