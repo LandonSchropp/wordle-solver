@@ -52,9 +52,9 @@ for (let attempts = 0; attempts < 6 && words.length > 1; attempts++) {
 
 if (words.length !== 1) {
   // eslint-disable-next-line no-console
-  console.log("\nOh no! Something's gone terribly wrong. No matches could be found.");
+  console.log("\nOh no! Something's gone horribly wrong. No matches could be found.");
   process.exit(1);
 }
 
 // eslint-disable-next-line no-console
-console.log("You found the answer! Nice job.");
+console.log("\nYou found the answer! Nice job.");
