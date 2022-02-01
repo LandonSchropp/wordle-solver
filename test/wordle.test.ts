@@ -1,4 +1,4 @@
-import { validateResponse } from "../source/wordle";
+import { nextWord, validateResponse } from "../source/wordle";
 
 describe("validateResponse", () => {
 
@@ -28,5 +28,13 @@ describe("validateResponse", () => {
     it("throws an error", () => {
       expect(() => validateResponse("-----")).toThrow();
     });
+  });
+});
+
+describe("nextWord", () => {
+
+  it("returns a word from the provided array of words", () => {
+    let words = [ "apple", "banana", "carrot" ];
+    expect(words).toContain(nextWord(words));
   });
 });
