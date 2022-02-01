@@ -6,8 +6,7 @@ import _ from "lodash";
 export function validateResponse(response: string) {
   if (!/^\w{5}$/.test(response)) {
     // eslint-disable-next-line no-console
-    console.error(`\nThe response '${ response }' is not valid!`);
-    process.exit(1);
+    throw new Error(`\nThe response '${ response }' is not valid!`);
   }
 }
 
@@ -29,7 +28,7 @@ function matchesExactLetters(word: string, response: string) {
  * Returns true if the word does not contain any of the letters that were rejected from the attempt.
  */
 function doesNotContainRejectedLetters(word: string, attempt: string, response: string) {
-  let rejectedLetters = attempt.split("").filter((letter, index) => response[index] === "_");
+  let rejectedLetters = attempt.split("").filter((_letter, index) => response[index] === "_");
   return new RegExp(`[^${ rejectedLetters.join("") }]{5}`).test(word);
 }
 
