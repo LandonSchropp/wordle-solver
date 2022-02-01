@@ -6,6 +6,12 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@babel/cli": "7.16.8",
+    "@babel/core": "7.16.12",
+    "@babel/node": "7.16.8",
+    "@babel/preset-env": "7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@babel/register": "7.16.9",
     "@types/lodash-es": "^4.17.5",
     "@types/node": "^17.0.13",
     "lodash-es": "^4.17.21",
