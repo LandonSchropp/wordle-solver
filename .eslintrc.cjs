@@ -3,7 +3,8 @@ module.exports = {
   plugins: [ "@typescript-eslint" ],
   env: {
     node: true,
-    jest: true
+    jest: true,
+    es6: true
   },
   extends: [
     "plugin:@typescript-eslint/eslint-recommended",

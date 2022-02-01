@@ -1,16 +1,18 @@
 // Monkey patch Jest so that tests without an implementation are marked as `todo`.
-const it = global.it;
+const originalIt = global.it;
 
-const wrappedIt = (description, func) => {
+const wrappedIt = (description: string, func: () => void | Promise<void>) => {
   if (!func) {
-    return it.todo(description);
+    return originalIt.todo(description);
   }
 
-  return it(description, func);
+  return originalIt(description, func);
 };
 
+// TODO: This proxy should be cast to the It interface. However, I'm currently unable to import that
+// interface using @babel/preset-typescript.
 global.it = new Proxy(wrappedIt, {
-  get: (target, prop) => {
-    return it[prop];
+  get: (_target: unknown, prop: string) => {
+    return originalIt[prop];
   }
-});
+}) as any; // eslint-disable-line @typescript-eslint/no-explicit-any

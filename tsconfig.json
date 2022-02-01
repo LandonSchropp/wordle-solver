@@ -3,5 +3,6 @@
     "module": "esnext",
     "target": "esnext",
     "esModuleInterop": true
-  }
+  },
+  "types": ["node", "jest"]
 }
