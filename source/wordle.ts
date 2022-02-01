@@ -21,7 +21,7 @@ export function nextWord(words: string[]) {
  * Returns true if the word matches the exact letters in the response.
  */
 function matchesExactLetters(word: string, response: string) {
-  return new RegExp(response.replaceAll(/[a-z_]/g, ".").toLowerCase()).test(word);
+  return new RegExp(response.replace(/[a-z_]/g, ".").toLowerCase()).test(word);
 }
 
 /**
@@ -38,7 +38,7 @@ function doesNotContainRejectedLetters(word: string, attempt: string, response: 
  */
 function doesNotHaveMisplacedLettersInWrongSpot(word: string, attempt: string, response: string) {
   return new RegExp(
-    response.replaceAll(/./g, letter => {
+    response.replace(/./g, letter => {
       return /[a-z]/.test(letter) ? `[^${ letter }]` : ".";
     })
   ).test(word);
@@ -57,7 +57,7 @@ function conatainsMisplacedLetters(word: string, attempt: string, response: stri
 /**
  * Returns true if the provided word matches the given attempt and response.
  */
-function isMatch(word: string, attempt: string, response: string) {
+export function isMatch(word: string, attempt: string, response: string) {
   return matchesExactLetters(word, response)
     && doesNotContainRejectedLetters(word, attempt, response)
     && doesNotHaveMisplacedLettersInWrongSpot(word, attempt, response)
