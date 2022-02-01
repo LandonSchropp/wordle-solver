@@ -1,4 +1,4 @@
-import { isMatch, nextWord, validateResponse } from "../source/wordle";
+import { filterWords, isMatch, nextWord, validateResponse } from "../source/wordle";
 
 describe("validateResponse", () => {
 
@@ -95,5 +95,17 @@ describe("isMatch", () => {
     it("returns false", () => {
       expect(isMatch("beans", "abort", "__o__")).toBe(false);
     });
+  });
+});
+
+describe("filterWords", () => {
+
+  it("filters out the words that don't match", () => {
+    expect(filterWords([ "apple", "armor", "zooms" ], "thank", "__a__")).not.toContain("zooms");
+  });
+
+  it("keeps the words that do match", () => {
+    expect(filterWords([ "apple", "armor", "zooms" ], "thank", "__a__")).toContain("apple");
+    expect(filterWords([ "apple", "armor", "zooms" ], "thank", "__a__")).toContain("armor");
   });
 });
