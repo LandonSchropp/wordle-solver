@@ -21,9 +21,12 @@ console.log(`\n${ INTRODUCTION }`);
 /**
  * Provides a word to the user and prompts them to respond.
  */
-async function prompt(numberOfWords: number, word: string) {
+async function prompt(words: string[], word: string) {
+  let number = words.length.toLocaleString();
+  let possibilities = (words.length > 5 ? [ ...words.slice(0, 5), "etc" ] : words).join(", ");
+
   /* eslint-disable no-console */
-  console.log(`\nThere are ${ numberOfWords.toLocaleString() } possible answers.`);
+  console.log(`\nThere are ${ number } possible answers (${ possibilities }).`);
   console.log(`Please try the word '${ word }'.`);
   /* eslint-enable no-console */
 
@@ -37,7 +40,7 @@ let words = DICTIONARY;
 // Loop through the words, reducing the number each time.
 for (let attempts = 0; attempts < 6 && words.length > 1; attempts++) {
   let attempt = nextWord(words);
-  let response = await prompt(words.length, attempt);
+  let response = await prompt(words, attempt);
   validateResponse(response);
   words = filterWords(words, attempt, response);
 }
