@@ -30,9 +30,7 @@ async function prompt(words: string[], word: string) {
   console.log(`Please try the word '${ word }'.`);
   /* eslint-enable no-console */
 
-  let response = await ask("How did Wordle respond?\n");
-
-  return response;
+  return await ask("How did Wordle respond?\n");
 }
 
 let words = DICTIONARY;
