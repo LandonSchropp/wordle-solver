@@ -1,4 +1,4 @@
-import { filterWords, isMatch, nextWord, validateResponse } from "../source/wordle";
+import { distribution, filterWords, isMatch, nextWord, validateResponse } from "../source/wordle";
 
 describe("validateResponse", () => {
 
@@ -27,6 +27,55 @@ describe("validateResponse", () => {
 
     it("throws an error", () => {
       expect(() => validateResponse("-----")).toThrow();
+    });
+  });
+});
+
+describe("distribution", () => {
+
+  describe("when the array of words is empty", () => {
+
+    it("returns an empty object", () => {
+      expect(distribution([])).toEqual({});
+    });
+  });
+
+  describe("when the array of words contains a word with no duplicate letters", () => {
+
+    it("returns an object containing an equal distribution of letters", () => {
+      expect(distribution([ "tears" ])).toEqual({
+        "a": 0.2,
+        "e": 0.2,
+        "r": 0.2,
+        "s": 0.2,
+        "t": 0.2
+      });
+    });
+  });
+
+  describe("when the array of words contains a word with duplicate letters", () => {
+
+    it("returns an object containing the relative distribution of letters", () => {
+      expect(distribution([ "apple" ])).toEqual({
+        "a": 0.2,
+        "e": 0.2,
+        "l": 0.2,
+        "p": 0.4
+      });
+    });
+  });
+
+  describe("when the array of words contains a word with duplicate letters", () => {
+
+    it("returns an object containing the relative distribution of letters", () => {
+      expect(distribution([ "apple", "pears" ])).toEqual({
+        "a": 0.2,
+        "e": 0.2,
+        "l": 0.1,
+        "p": 0.3,
+        "r": 0.1,
+        "s": 0.1
+      });
     });
   });
 });

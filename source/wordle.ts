@@ -11,6 +11,14 @@ export function validateResponse(response: string) {
 }
 
 /**
+ * Returns an distribution object contains the relative percentages of each letter.
+ */
+export function distribution(words: string[]) {
+  let letters = words.join("").split("");
+  return _.mapValues(_.countBy(letters), (count) => count / letters.length);
+}
+
+/**
  * Chooses the next word to try from the array of words.
  */
 export function nextWord(words: string[]) {
