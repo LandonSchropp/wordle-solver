@@ -22,7 +22,14 @@ export function distribution(words: string[]) {
  * Chooses the next word to try from the array of words.
  */
 export function nextWord(words: string[]) {
-  return _.sample(words);
+  let letterDistribution = distribution(words);
+
+  return _.maxBy(words, word => {
+    return word
+      .split("")
+      .map(letter => letterDistribution[letter])
+      .reduce((accumulator, value) => accumulator + value, 0);
+  });
 }
 
 /**

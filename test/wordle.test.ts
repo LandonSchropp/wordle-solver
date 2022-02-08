@@ -86,6 +86,13 @@ describe("nextWord", () => {
     let words = [ "apple", "banana", "carrot" ];
     expect(words).toContain(nextWord(words));
   });
+
+  describe("when the words contains a variety of words", () => {
+
+    it("returns the word containing the most common letters", () => {
+      expect(nextWord([ "apple", "pears", "libel" ])).toEqual("apple");
+    });
+  });
 });
 
 describe("isMatch", () => {
